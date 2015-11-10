@@ -1,2 +1,1 @@
-# plat
-this is my plat
+这是我自己的平台

@@ -12,7 +12,7 @@ log4js.configure({
 });
 
 var levels = {
-	'main': 'info',
+	'main': 'debug',
 	'nodejs': 'debug'
 };
 

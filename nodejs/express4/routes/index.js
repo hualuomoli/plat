@@ -1,8 +1,19 @@
-var express = require('express');
+// routers defult is index.js
 
-/* GET home page. */
-exports.index = function(req, res, next) {
-	res.render('index', {
-		title: 'Express4'
-	});
+var main = require('./main');
+var user = require('./user');
+
+
+module.exports = function(app) {
+	// main path
+	app.get('/', main.main);
+
+	// use module
+	app.use('/user', user);
+
+
+	// con't match path. goto main
+	app.get('/*', main.all);
+
+
 };

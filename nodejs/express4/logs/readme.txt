@@ -1,0 +1,1 @@
+git must have one file or folder to push

@@ -13,5 +13,6 @@ nodejs + Express4 + Angularjs + requireJS
 ##Sublime<br>
 [20 个强大的 Sublime Text 插件](http://www.oschina.net/translate/20-powerful-sublimetext-plugins)<br>
 [29个常用 Sublime Text 插件推荐](http://www.jb51.net/softjc/178366.html)<br>
+[使用Sublime Text 3进行Web开发](http://segmentfault.com/q/1010000000576859)<br>
 
 

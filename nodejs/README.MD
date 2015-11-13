@@ -11,10 +11,7 @@ nodejs + Express4 + Angularjs + requireJS
 
 #插件
 ##Sublime
-[Emmet](https://github.com/sergeche/emmet-sublime)<br/>
-
-
-![](http://static.oschina.net/uploads/img/201402/05081902_YBUL.gif)<br>
-概括地说，Emmet（译者注：前身就是以前大名鼎鼎的Zen Coding，这个如果你没听说和使用过，就悲哀了）是一个可以让你更快更高效地编写HTML和CSS，节省你大量时间的插件。怎么使用？你只需按约定的缩写形式书写而不用写整个代码，然后按“扩展”键，这些缩写就会自动扩展为对应的代码内容。 比如，你只需要输入 ((h4>a[rel=external])+p>img[width=500 height=320])*12 ，然后它会被扩展转换成12个列表项和紧随其后的图像。然后你就可以在此基础上再填写内容，就这么简单。
+[20 个强大的 Sublime Text 插件](http://www.oschina.net/translate/20-powerful-sublimetext-plugins)
+[29个常用 Sublime Text 插件推荐](http://www.jb51.net/softjc/178366.html)
 
 

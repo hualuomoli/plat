@@ -13,6 +13,18 @@ var copyConfig = [
 	{
 		src: 'bower_components/jquery/dist/**',
 		dest: 'public/components/jquery/dist'
+	},
+	// require
+	{
+		src: 'bower_components/requirejs/require.js',
+		dest: 'public/components/requirejs'
+	},
+	// angular
+	{
+		src: ['bower_components/angular/angular.js',
+			'bower_components/angular/angular.min.js'
+		],
+		dest: 'public/components/angular'
 	}
 
 ];

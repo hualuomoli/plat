@@ -17,8 +17,8 @@ nodejs + Express4 + Angularjs + requireJS
 
 
 #使用说明
-全局安装bower和gulp，如果没有安装，使用 `npm install -g bower gulp`安装
-执行 `npm install & bower install`
-输入命令 `gulp` 查看结果
+全局安装bower和gulp，如果没有安装，使用 `npm install -g bower gulp`安装<br>
+执行 `npm install & bower install`<br>
+输入命令 `gulp` 查看结果<br>
 
 

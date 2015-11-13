@@ -16,6 +16,9 @@ nodejs + Express4 + Angularjs + requireJS
 [使用Sublime Text 3进行Web开发](http://segmentfault.com/q/1010000000576859)<br>
 
 
-#gulp
+#使用说明
+全局安装bower和gulp，如果没有安装，使用~npm install -g bower gulp~安装
+执行~npm install & bower install~
+输入命令~gulp~查看结果
 
 

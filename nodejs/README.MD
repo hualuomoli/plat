@@ -72,7 +72,7 @@ Node代码提示
 ```
 
 [Bootstrap 3 Snippets](https://packagecontrol.io/packages/Bootstrap 3 Snippets)
-```Bootstrap 3 Snippets
+```Bootstrap3
 快速编写Bootstrap 3 代码
 ```
 

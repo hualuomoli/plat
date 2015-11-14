@@ -16,22 +16,85 @@ nodejs + Express4 + Angularjs + requireJS
 插件
 ================================
 
-Sublime
+[Sublime](https://packagecontrol.io/browse)
 --------------------------------
 
-Emmet
+安装插件前先安装包管理工具[Package Control](https://packagecontrol.io/installation)
+
+[Emmet](https://packagecontrol.io/packages/Emmet)
 ```Emmet
-Emmet is a plugin for many popular text editors which greatly improves HTML & CSS workflow:
+快速开发html
 ```
 
-jquery
-```jquery
-如果你离不开jQuery的话，这个必备
+[JsFormat](https://packagecontrol.io/packages/JsFormat)
+```JsFormat
+JS格式化
 ```
 
-JS Format
-```JS
-如果你离不开jQuery的话，这个必备
+[CSSFormat](https://packagecontrol.io/packages/CSSFormat)
+```CSSFormat
+CSS格式化
+```
+
+[Autoprefixer](https://packagecontrol.io/packages/Autoprefixer)
+```Autoprefixer
+CSS3自动补全浏览器前缀
+```
+
+[jQuery](https://packagecontrol.io/packages/jQuery)
+```jQuery
+Sublime对jQuery的支持
+```
+
+[Nodejs](https://packagecontrol.io/packages/Nodejs)
+```Nodejs
+Node代码提示
+```
+
+[Convert​To​UTF8](https://packagecontrol.io/packages/ConvertToUTF8)
+```Convert​To​UTF8
+转换为UTF-8的编码
+```
+
+[Auto​File​Name](https://packagecontrol.io/packages/AutoFileName)
+```Auto​File​Name
+自动添加文件名，输入`/`后自动提示
+```
+
+[Sublime​Code​Intel](https://packagecontrol.io/packages/SublimeCodeIntel)
+```Sublime​Code​Intel
+代码自动补全
+```
+
+[HTML5](https://packagecontrol.io/packages/HTML5)
+```HTML5
+快速编写HTML5代码
+```
+
+[Bootstrap 3 Snippets](https://packagecontrol.io/packages/Bootstrap 3 Snippets)
+```Bootstrap 3 Snippets
+快速编写Bootstrap 3 代码
+```
+
+[SublimeLinter](https://packagecontrol.io/packages/SublimeLinter)
+```SublimeLinter
+代码检查工具
+```
+
+[Side​Bar​Enhancements](https://packagecontrol.io/packages/SideBarEnhancements)
+```Side​Bar​Enhancements
+SideBar增强工具
+```
+
+[BracketHighlighter](https://packagecontrol.io/packages/BracketHighlighter)
+```BracketHighlighter
+成对符号高亮显示
+```
+
+
+[最近流行](https://packagecontrol.io/browse/popular)
+```最近流行
+最近流行的一些插件
 ```
 
 [20 个强大的 Sublime Text 插件](http://www.oschina.net/translate/20-powerful-sublimetext-plugins)<br>

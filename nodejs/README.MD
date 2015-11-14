@@ -30,8 +30,8 @@ jquery
 ```
 
 JS Format
-```JS Format
-一个JS代码格式化插件
+```JS
+如果你离不开jQuery的话，这个必备
 ```
 
 [20 个强大的 Sublime Text 插件](http://www.oschina.net/translate/20-powerful-sublimetext-plugins)<br>

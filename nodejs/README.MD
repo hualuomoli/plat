@@ -91,6 +91,11 @@ SideBar增强工具
 成对符号高亮显示
 ```
 
+[Sublime​Server](https://packagecontrol.io/packages/SublimeServer)
+```Sublime​Server
+Sublime作为服务器
+```
+
 
 [最近流行](https://packagecontrol.io/browse/popular)
 ```最近流行

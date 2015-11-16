@@ -1,5 +1,7 @@
 # sinopia 本地的NPM仓库
-# 
+# https://github.com/rlidwka/sinopia
+#
+# 启动命令
 # node I:\nodejs\sinopia-demo\node_modules\sinopia\lib\cli.js -c I:\nodejs\sinopia-demo\config.yaml
 #
 # This is the default config file. It allows all users to do anything,

@@ -81,8 +81,8 @@ Node代码提示
 代码检查工具
 ```
 
-[Side​Bar​Enhancements](https://packagecontrol.io/packages/SideBarEnhancements)
-```Side​Bar​Enhancements
+[SideBarEnhancements](https://packagecontrol.io/packages/SideBarEnhancements)
+```SideBarEnhancements
 SideBar增强工具
 ```
 

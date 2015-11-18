@@ -56,13 +56,13 @@ Node代码提示
 转换为UTF-8的编码
 ```
 
-[Auto​File​Name](https://packagecontrol.io/packages/AutoFileName)
-```Auto​File​Name
+[AutoFileName](https://packagecontrol.io/packages/AutoFileName)
+```AutoFileName
 自动添加文件名，输入`/`后自动提示
 ```
 
-[Sublime​Code​Intel](https://packagecontrol.io/packages/SublimeCodeIntel)
-```Sublime​Code​Intel
+[SublimeCodeIntel](https://packagecontrol.io/packages/SublimeCodeIntel)
+```SublimeCodeIntel
 代码自动补全
 ```
 
@@ -91,8 +91,8 @@ SideBar增强工具
 成对符号高亮显示
 ```
 
-[Sublime​Server](https://packagecontrol.io/packages/SublimeServer)
-```Sublime​Server
+[SublimeServer](https://packagecontrol.io/packages/SublimeServer)
+```SublimeServer
 Sublime作为服务器
 ```
 

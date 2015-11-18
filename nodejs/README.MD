@@ -51,8 +51,8 @@ Sublime对jQuery的支持
 Node代码提示
 ```
 
-[Convert​To​UTF8](https://packagecontrol.io/packages/ConvertToUTF8)
-```Convert​To​UTF8
+[ConvertToUTF8](https://packagecontrol.io/packages/ConvertToUTF8)
+```ConvertToUTF8
 转换为UTF-8的编码
 ```
 

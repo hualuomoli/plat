@@ -20,11 +20,10 @@
 
 	<description>Spring Properties Configuration</description>
 
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean class="com.github.hualuomoli.base.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:prop/env.properties</value>
-				<value>classpath:prop/jdbc.properties</value>
+				<value>classpath:prop/*.properties</value>
 			</list>
 		</property>
 	</bean>

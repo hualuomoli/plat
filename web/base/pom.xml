@@ -5,12 +5,12 @@
 
 	<parent>
 		<groupId>com.github.hualuomoli</groupId>
-		<artifactId>web-parent</artifactId>
+		<artifactId>parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>web-base</artifactId>
+	<artifactId>base</artifactId>
 	<packaging>jar</packaging>
 
 
@@ -52,7 +52,7 @@
 		<!-- 1、common -->
 		<dependency>
 			<groupId>com.github.hualuomoli</groupId>
-			<artifactId>web-commons</artifactId>
+			<artifactId>commons</artifactId>
 			<version>${project.parent.version}</version>
 			<scope>compile</scope>
 		</dependency>

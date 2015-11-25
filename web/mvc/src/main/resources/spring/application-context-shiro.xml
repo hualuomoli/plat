@@ -7,9 +7,6 @@
 
 	<description>Shiro Configuration</description>
 
-	<context:property-placeholder ignore-unresolvable="true" location="classpath:prop/web.properties" />
-
-
 	<!-- 定义Shiro安全管理配置 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="authorizingRealm" /><!-- service instance by spring -->
@@ -22,7 +19,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/static/**=anon
-				${authcPath}/**=authc
+				${shiro.authcPath}/**=authc
 			</value>
 		</property>
 	</bean>

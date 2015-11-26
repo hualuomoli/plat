@@ -41,8 +41,9 @@
 
 		<dependency>
 			<groupId>com.github.hualuomoli</groupId>
-			<artifactId>base</artifactId>
+			<artifactId>commons</artifactId>
 			<version>${project.parent.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- 1、WEB -->

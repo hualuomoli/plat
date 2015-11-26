@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "${authcPath}/index")
+@RequestMapping(value = "${shiro.authcPath}/index")
 public class IndexController {
 
 	@RequestMapping(value = "")

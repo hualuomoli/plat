@@ -3,10 +3,10 @@ package com.github.hualuomoli.shiro.service.impl;
 import java.util.Collection;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.druid.util.StringUtils;
 import com.github.hualuomoli.shiro.exception.InvalidateLoginUserException;
 import com.github.hualuomoli.shiro.exception.NoLoginUserException;
 import com.github.hualuomoli.shiro.service.IShiroUserService;

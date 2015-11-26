@@ -21,7 +21,7 @@ import com.google.common.collect.Maps;
 @RequestMapping(value = "/login")
 public class LoginController {
 
-	@Value(value = "${authcPath}")
+	@Value(value = "${shiro.authcPath}")
 	private String authcPath;
 
 	// login page

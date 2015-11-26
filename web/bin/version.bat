@@ -18,7 +18,7 @@ echo.
 
 echo Update project to %version%
 
-
+cd %basePath%/parent
 call mvn versions:set -DnewVersion=%version%
 
 

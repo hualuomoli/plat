@@ -11,7 +11,7 @@ echo.
 
 
 cd %~dp0
-
+cd ..
 set basePath=%cd%
 
 echo Install Parent
@@ -19,15 +19,15 @@ cd %basePath%/parent
 call mvn clean install -Dmaven.test.skip=true
 
 echo Install Commons
-cd %basePath%/commons
+cd %basePath%/modules/commons
 call mvn clean install -Dmaven.test.skip=true
 
 echo Install Base
-cd %basePath%/base
+cd %basePath%/modules/base
 call mvn clean install -Dmaven.test.skip=true
 
 echo Install MVC
-cd %basePath%/mvc
+cd %basePath%/modules/mvc
 call mvn clean install -Dmaven.test.skip=true
 
 pause

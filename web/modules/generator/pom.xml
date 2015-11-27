@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.github.hualuomoli</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.0-release</version>
+		<relativePath>../../parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>generator</artifactId>
+	<packaging>jar</packaging>
+
+
+	<!-- 项目属性 -->
+	<properties>
+
+
+
+	</properties>
+
+	<!-- 资源库定义 -->
+	<repositories>
+
+	</repositories>
+
+	<!-- 设定插件仓库 -->
+	<pluginRepositories>
+
+	</pluginRepositories>
+
+	<!-- 依赖项定义 -->
+	<dependencies>
+
+		<dependency>
+			<groupId>com.github.hualuomoli</groupId>
+			<artifactId>base</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+	</dependencies>
+
+
+
+</project>

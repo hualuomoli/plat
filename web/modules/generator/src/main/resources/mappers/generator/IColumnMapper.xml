@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.hualuomoli.generator.mapper.IColumnMapper">
+
+	<select id="findList_mysql" resultType="com.github.hualuomoli.generator.entity.ColumnAttribute">
+		SELECT
+			t.COLUMN_NAME													as "columnName",
+			t.ORDINAL_POSITION												as "position",
+			t.DATA_TYPE														as "dataType",
+			t.CHARACTER_MAXIMUM_LENGTH										as "dataLength",
+			t.NUMERIC_PRECISION												as "dataPrecision",
+			t.NUMERIC_SCALE													as "dataScale",
+			(case when t.COLUMN_DEFAULT is null then 'N' else 'Y' end)		as "dataDefault",
+			(case when t.IS_NULLABLE = 'NO' then 'N' else 'Y' end)			as "nullable",
+			t.COLUMN_COMMENT												as "comments",
+			(case when s.COLUMN_NAME is null then 'N' else 'Y' end)			as "pk"
+		FROM information_schema.COLUMNS t
+		LEFT JOIN (
+			SELECT b.COLUMN_NAME
+			FROM information_schema.TABLE_CONSTRAINTS a
+			INNER JOIN information_schema.KEY_COLUMN_USAGE b ON a.TABLE_NAME = b.TABLE_NAME 
+			AND a.CONSTRAINT_NAME = b.CONSTRAINT_NAME AND a.TABLE_SCHEMA = b.TABLE_SCHEMA
+			WHERE a.TABLE_SCHEMA = #{schema}
+			AND a.TABLE_NAME = #{tableName}
+			AND a.CONSTRAINT_TYPE = 'PRIMARY KEY'
+		) s ON t.COLUMN_NAME = s.COLUMN_NAME
+		WHERE t.TABLE_SCHEMA = #{schema}
+		AND t.TABLE_NAME = #{tableName}
+	</select>
+		
+</mapper>

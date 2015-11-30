@@ -12,7 +12,7 @@ import com.github.hualuomoli.base.Paginator;
  */
 public abstract class BaseEntity implements Paginator {
 
-	private Pagination Pagination; // pagination
+	private Pagination pagination; // pagination
 
 	private String createBy; // data create by which user
 	private Date createDate; // data create date
@@ -22,11 +22,11 @@ public abstract class BaseEntity implements Paginator {
 	private String remark; // data remark
 
 	public Pagination getPagination() {
-		return Pagination;
+		return pagination;
 	}
 
 	public void setPagination(Pagination pagination) {
-		Pagination = pagination;
+		this.pagination = pagination;
 	}
 
 	public String getCreateBy() {

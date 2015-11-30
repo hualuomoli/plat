@@ -16,6 +16,8 @@ public class Pagination {
 	private Integer count; // 总数量
 	private List dataList; // 数据集合
 
+	private String orderBy;//page query order by.such as order by user_code asc,user_name desc
+
 	public Pagination() {
 	}
 
@@ -78,6 +80,14 @@ public class Pagination {
 	 */
 	public int getMaxResults() {
 		return getPageSize();
+	}
+
+	public String getOrderBy() {
+		return orderBy;
+	}
+
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
 	}
 
 }

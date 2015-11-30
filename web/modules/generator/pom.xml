@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>generator</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 
 	<!-- 项目属性 -->
@@ -36,6 +36,12 @@
 		<dependency>
 			<groupId>com.github.hualuomoli</groupId>
 			<artifactId>base</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.github.hualuomoli</groupId>
+			<artifactId>mvc</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 

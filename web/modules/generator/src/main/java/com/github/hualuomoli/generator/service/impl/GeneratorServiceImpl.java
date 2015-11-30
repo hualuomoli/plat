@@ -9,16 +9,8 @@ import org.springframework.stereotype.Service;
 import com.github.hualuomoli.generator.db.DataBase;
 import com.github.hualuomoli.generator.db.DataType;
 import com.github.hualuomoli.generator.db.JavaType;
-import com.github.hualuomoli.generator.db.TrueFalse;
 import com.github.hualuomoli.generator.entity.Column;
-import com.github.hualuomoli.generator.entity.ColumnAttribute;
 import com.github.hualuomoli.generator.entity.Table;
-import com.github.hualuomoli.generator.entity.column.DateColumn;
-import com.github.hualuomoli.generator.entity.column.DoubleColumn;
-import com.github.hualuomoli.generator.entity.column.FloatColumn;
-import com.github.hualuomoli.generator.entity.column.IntegerColumn;
-import com.github.hualuomoli.generator.entity.column.LongColumn;
-import com.github.hualuomoli.generator.entity.column.StringColumn;
 import com.github.hualuomoli.generator.mapper.IColumnMapper;
 import com.github.hualuomoli.generator.service.IGeneratorService;
 import com.google.common.collect.Lists;
@@ -39,12 +31,12 @@ public class GeneratorServiceImpl implements IGeneratorService {
 		if (StringUtils.isBlank(table.getDatabase())) {
 			throw new RuntimeException("please set database name.");
 		}
-		List<ColumnAttribute> columnAttributeList = null;
+		List<Column> ColumnList = null;
 		if (DataBase.DATABASE_MYSQL.equals(table.getDatabase())) {
-			columnAttributeList = columnMapper.findList_mysql(table.getOwner(), table.getTableName());
+			ColumnList = columnMapper.findList_mysql(table.getOwner(), table.getTableName());
 		}
 
-		return this.format(columnAttributeList);
+		return this.format(ColumnList);
 
 	}
 
@@ -53,117 +45,53 @@ public class GeneratorServiceImpl implements IGeneratorService {
 	 * @param columnAttributeList query database column message
 	 * @return Column Entity Message
 	 */
-	private List<Column> format(List<ColumnAttribute> columnAttributeList) {
-		List<Column> columnList = Lists.newArrayList();
-		if (columnAttributeList == null || columnAttributeList.size() == 0) {
-			return columnList;
+	private List<Column> format(List<Column> ColumnList) {
+		if (ColumnList == null || ColumnList.size() == 0) {
+			return Lists.newArrayList();
 		}
-		for (ColumnAttribute columnAttribute : columnAttributeList) {
-			String dataType = columnAttribute.getDataType();
+		for (Column column : ColumnList) {
+
+			column.setJavaName(this.parseName(column.getColumnName()));
+			column.setComments(this.parseComment(column.getComments()));
+
+			String dataType = column.getDataType();
+
 			if (DataType.STRING.contains(dataType)) {
 				// string
-				columnList.add(this.parseString(columnAttribute));
+				column.setJavaType(JavaType.STRING);
 				continue;
 			}
 			if (DataType.INTEGER.contains(dataType)) {
 				// integer
-				columnList.add(this.parseInteger(columnAttribute));
+				column.setJavaType(JavaType.INTEGER);
 				continue;
 			}
 			if (DataType.LONG.contains(dataType)) {
 				// long
-				columnList.add(this.parseLong(columnAttribute));
+				column.setJavaType(JavaType.LONG);
 				continue;
 			}
 			if (DataType.FLOAT.contains(dataType)) {
 				// float
-				columnList.add(this.parseFloat(columnAttribute));
+				column.setJavaType(JavaType.FLOAT);
 				continue;
 			}
 			if (DataType.DOUBLE.contains(dataType)) {
 				// double
-				columnList.add(this.parseDouble(columnAttribute));
+				column.setJavaType(JavaType.DOUBLE);
 				continue;
 			}
 			if (DataType.DATE.contains(dataType)) {
 				// date
-				columnList.add(this.parseDate(columnAttribute));
+				column.setJavaType(JavaType.DATE);
 				continue;
 			}
 
 			// other such as number(10,2)
-			columnList.add(this.parse(columnAttribute));
+			// TODO
 
 		}
-		return columnList;
-	}
-
-	/** parse column data type to String */
-	private Column parseString(ColumnAttribute columnAttribute) {
-		StringColumn column = new StringColumn();
-		this.addCommon(column, columnAttribute);
-		column.setJavaType(JavaType.STRING);
-		return column;
-	}
-
-	/** parse column data type to Integer */
-	private Column parseInteger(ColumnAttribute columnAttribute) {
-		IntegerColumn column = new IntegerColumn();
-		this.addCommon(column, columnAttribute);
-		column.setJavaType(JavaType.INTEGER);
-		return column;
-	}
-
-	/** parse column data type to Long */
-	private Column parseLong(ColumnAttribute columnAttribute) {
-		LongColumn column = new LongColumn();
-		this.addCommon(column, columnAttribute);
-		column.setJavaType(JavaType.LONG);
-		return column;
-	}
-
-	/** parse column data type to Float */
-	private Column parseFloat(ColumnAttribute columnAttribute) {
-		FloatColumn column = new FloatColumn();
-		this.addCommon(column, columnAttribute);
-		column.setJavaType(JavaType.FLOAT);
-		return column;
-	}
-
-	/** parse column data type to Double */
-	private Column parseDouble(ColumnAttribute columnAttribute) {
-		DoubleColumn column = new DoubleColumn();
-		this.addCommon(column, columnAttribute);
-		column.setJavaType(JavaType.DOUBLE);
-		return column;
-	}
-
-	/** parse column data type to Date */
-	private Column parseDate(ColumnAttribute columnAttribute) {
-		DateColumn column = new DateColumn();
-		this.addCommon(column, columnAttribute);
-		column.setJavaType(JavaType.DATE);
-		return column;
-	}
-
-	/** check the column's java type */
-	private Column parse(ColumnAttribute columnAttribute) {
-		// TODO
-		return null;
-	}
-
-	/**
-	 * add common column message
-	 * @param column column entity
-	 * @param columnAttribute column attribute
-	 */
-	private void addCommon(Column column, ColumnAttribute columnAttribute) {
-		column.setColumnName(this.parseName(columnAttribute.getColumnName()));
-		column.setComments(this.parseComment(columnAttribute.getComments()));
-		column.setPosition(columnAttribute.getPosition());
-		column.setDataDefault(TrueFalse.TRUE.equals(columnAttribute.getDataDefault()));
-		column.setNullable(TrueFalse.TRUE.equals(columnAttribute.getNullable()));
-		column.setPk(TrueFalse.TRUE.equals(columnAttribute.getPk()));
+		return ColumnList;
 	}
 
 	/**

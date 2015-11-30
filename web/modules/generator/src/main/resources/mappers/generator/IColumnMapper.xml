@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.hualuomoli.generator.mapper.IColumnMapper">
 
-	<select id="findList_mysql" resultType="com.github.hualuomoli.generator.entity.ColumnAttribute">
+	<select id="findList_mysql" resultType="com.github.hualuomoli.generator.entity.Column">
 		SELECT
 			t.COLUMN_NAME													as "columnName",
 			t.ORDINAL_POSITION												as "position",

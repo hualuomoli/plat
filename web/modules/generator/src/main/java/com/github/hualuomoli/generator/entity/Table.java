@@ -3,6 +3,8 @@ package com.github.hualuomoli.generator.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.github.hualuomoli.generator.db.TrueFalse;
+
 /**
  * Table Message entity
  * @author hualuomoli
@@ -13,11 +15,16 @@ public class Table implements Serializable {
 	private static final long serialVersionUID = 330163532973316097L;
 
 	private String tableName;
+	private String javaName;
 	private String owner;
 	private String comments;
 	private String database; // database name #DataBase
 
 	private List<Column> columnList;
+
+	// 
+	private Integer pkSize; // primary key size
+	private Param params; // params
 
 	public Table() {
 	}
@@ -28,6 +35,14 @@ public class Table implements Serializable {
 
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
+	}
+
+	public String getJavaName() {
+		return javaName;
+	}
+
+	public void setJavaName(String javaName) {
+		this.javaName = javaName;
 	}
 
 	public String getOwner() {
@@ -60,6 +75,27 @@ public class Table implements Serializable {
 
 	public void setColumnList(List<Column> columnList) {
 		this.columnList = columnList;
+		if (columnList != null && columnList.size() > 0) {
+			int size = 0;
+			for (Column column : columnList) {
+				if (TrueFalse.TRUE.equals(column.getPk())) {
+					size++;
+				}
+			}
+			pkSize = size;
+		}
+	}
+
+	public Integer getPkSize() {
+		return pkSize;
+	}
+
+	public Param getParams() {
+		return params;
+	}
+
+	public void setParams(Param params) {
+		this.params = params;
 	}
 
 }

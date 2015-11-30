@@ -31,12 +31,12 @@ public class GeneratorServiceImpl implements IGeneratorService {
 		if (StringUtils.isBlank(table.getDatabase())) {
 			throw new RuntimeException("please set database name.");
 		}
-		List<Column> ColumnList = null;
+		List<Column> columnList = null;
 		if (DataBase.DATABASE_MYSQL.equals(table.getDatabase())) {
-			ColumnList = columnMapper.findList_mysql(table.getOwner(), table.getTableName());
+			columnList = columnMapper.findList_mysql(table.getOwner(), table.getTableName());
 		}
 
-		return this.format(ColumnList);
+		return this.format(columnList);
 
 	}
 

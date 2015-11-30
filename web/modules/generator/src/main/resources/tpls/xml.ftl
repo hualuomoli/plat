@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="${params.package}.base.mapper.I${javaName}Mapper">
+<mapper namespace="${params.package}.basic.mapper.I${javaName}Mapper">
 	
 	<#-- show columns -->
 	<sql id="showColumns">
@@ -70,7 +70,7 @@
 	
 	<#-- get by all primary keys -->
 	<#if pkSize gt 0>
-	<select id="get" resultType="${params.package}.base.entity.${javaName}">
+	<select id="get" resultType="${params.package}.basic.entity.${javaName}">
 		select
 		<include refid="showColumns"/>
 		from ${tableName} t
@@ -88,7 +88,7 @@
 	<#if pkSize gt 1>
 	<#list columnList as column>
 	<#if column.pk == params.YES >
-	<select id="getBy${column.javaName?cap_first}" resultType="${params.package}.base.entity.${javaName}">
+	<select id="getBy${column.javaName?cap_first}" resultType="${params.package}.basic.entity.${javaName}">
 		select
 		<include refid="showColumns"/>
 		from ${tableName} t
@@ -195,15 +195,15 @@
 	</#if>
 	
 	<#-- query data list -->
-	<select id="findList" resultType="${params.package}.base.entity.${javaName}">
+	<select id="findList" resultType="${params.package}.basic.entity.${javaName}">
 		select
 		<include refid="showColumns"/>
 		from ${tableName} t
 		<where>
 		<include refid="queryColumns"/>
 		</where>
-		<if test="page != null and page.orderBy != null and page.orderBy != ''">
-			order by ${r"#{"}page.orderBy${r"}"}
+		<if test="pagination != null and pagination.orderBy != null and pagination.orderBy != ''">
+			order by ${r"#{"}pagination.orderBy${r"}"}
 		</if>
 	</select>
 	

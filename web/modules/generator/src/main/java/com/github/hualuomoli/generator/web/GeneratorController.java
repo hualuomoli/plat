@@ -3,38 +3,56 @@ package com.github.hualuomoli.generator.web;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.hualuomoli.commons.json.JsonMapper;
+import com.github.hualuomoli.generator.db.DataBase;
 import com.github.hualuomoli.generator.entity.Column;
 import com.github.hualuomoli.generator.entity.Table;
 import com.github.hualuomoli.generator.service.IGeneratorService;
-import com.google.common.collect.Lists;
 
 @Controller
 @RequestMapping(value = "generator")
 public class GeneratorController {
 
-	@Autowired
-	private IGeneratorService generatorService;
+	@Resource(name = "mysqlGeneratorService")
+	private IGeneratorService mysqlGeneratorService;
 
-	@RequestMapping(value = { "", "listData" })
+	@Value(value = "database")
+	private String dataBase;
+
+	// table
+	@RequestMapping(value = "tableList")
 	@ResponseBody
-	public String listData(HttpServletRequest request, HttpServletResponse response) {
-		Table table = new Table();
-		table.setOwner(request.getParameter("owner"));
-//		table.setDatabase(request.getParameter("database"));
-		table.setTableName(request.getParameter("tableName"));
-		List<Column> dataList = Lists.newArrayList();
-		//generatorService.assemble(table);
-		return JsonMapper.toJsonString(dataList);
+	public String tableList(HttpServletRequest request, HttpServletResponse response) {
+		//		mysqlGeneratorService
+		List<Table> tableList = null;
+		if (DataBase.DATABASE_MYSQL.equals(dataBase)) {
+			tableList = mysqlGeneratorService.findTableList();
+		}
+		String data = JsonMapper.toJsonString(tableList);
+		return data;
+	}
+
+	// column
+	@RequestMapping(value = "columnList")
+	@ResponseBody
+	public String columnList(HttpServletRequest request, HttpServletResponse response) {
+		String tableName = request.getParameter("tableName");
+		Table table = null;
+		if (DataBase.DATABASE_MYSQL.equals(dataBase)) {
+			table = mysqlGeneratorService.assemble(tableName);
+		}
+		String data = JsonMapper.toJsonString(table);
+		return data;
 	}
 
 	@RequestMapping(value = "save")

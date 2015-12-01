@@ -1,5 +1,7 @@
 package com.github.hualuomoli.generator.service;
 
+import java.util.List;
+
 import com.github.hualuomoli.generator.entity.Table;
 
 /**
@@ -11,12 +13,14 @@ import com.github.hualuomoli.generator.entity.Table;
  */
 public interface IGeneratorService {
 
+	// find table list
+	List<Table> findTableList();
+
 	/**
 	 * assemble message to a table Entity
 	 * @param tableName table's name
-	 * @param owner table owner
 	 * @return table message
 	 */
-	Table assemble(String tableName, String owner);
+	Table assemble(String tableName);
 
 }

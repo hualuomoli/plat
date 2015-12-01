@@ -12,6 +12,7 @@ import com.github.hualuomoli.generator.entity.Param;
 import com.github.hualuomoli.generator.entity.Table;
 import com.github.hualuomoli.generator.mapper.IColumnMapper;
 import com.github.hualuomoli.generator.mapper.ITableMapper;
+import com.github.hualuomoli.generator.util.GenConfig;
 import com.github.hualuomoli.generator.util.GeneratorUtils;
 
 public abstract class AbstractGeneratorService implements IGeneratorService {
@@ -26,16 +27,18 @@ public abstract class AbstractGeneratorService implements IGeneratorService {
 	protected abstract void parseColumn(Column column);
 
 	@Override
-	public Table assemble(String tableName, String owner) {
+	public List<Table> findTableList() {
+		return getTableMapper().findList(GenConfig.getOwner());
+	}
+
+	@Override
+	public Table assemble(String tableName) {
 
 		if (StringUtils.isBlank(tableName)) {
 			throw new RuntimeException("please set table's name.");
 		}
-		if (StringUtils.isBlank(owner)) {
-			throw new RuntimeException("please set owner.");
-		}
 
-		Table table = getTable(tableName, owner); // get table
+		Table table = getTable(tableName, GenConfig.getOwner()); // get table
 		this.parseTable(table); // parse table
 		this.addColumnList(table); // add column list
 		this.parseColumns(table.getColumnList()); // parse columns

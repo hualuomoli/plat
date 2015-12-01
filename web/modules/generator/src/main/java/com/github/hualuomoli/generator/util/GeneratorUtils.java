@@ -6,7 +6,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.github.hualuomoli.common.util.TemplateUtils;
-import com.github.hualuomoli.generator.entity.GenConfig;
 import com.github.hualuomoli.generator.entity.Param;
 import com.github.hualuomoli.generator.entity.Table;
 

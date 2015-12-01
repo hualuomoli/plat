@@ -16,12 +16,11 @@ public class GeneratorTemplateTest extends SpringTestRunner {
 	@Resource(name = "mysqlGeneratorService")
 	private IGeneratorService generatorService;
 
-	private static final String owner = "financial";
 	private static final String tableName = "gen_demo";
 
 	@Test
 	public void test() {
-		Table table = generatorService.assemble(tableName, owner);
+		Table table = generatorService.assemble(tableName);
 		// 增加查询
 		// string
 		Column name = table.getColumnList().get(2); // gen_name

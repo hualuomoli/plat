@@ -3,6 +3,7 @@ package com.github.hualuomoli.generator.entity;
 import java.util.HashMap;
 
 import com.github.hualuomoli.generator.db.TrueFalse;
+import com.github.hualuomoli.generator.util.GenConfig;
 
 /**
  * constant parameter

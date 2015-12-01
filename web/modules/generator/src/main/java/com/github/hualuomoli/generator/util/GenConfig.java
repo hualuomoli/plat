@@ -1,9 +1,11 @@
-package com.github.hualuomoli.generator.entity;
+package com.github.hualuomoli.generator.util;
 
 import java.io.IOException;
 import java.util.Properties;
 
 import org.springframework.core.io.DefaultResourceLoader;
+
+import com.github.hualuomoli.generator.entity.Param;
 
 public final class GenConfig {
 
@@ -35,6 +37,10 @@ public final class GenConfig {
 
 	public static String getProjectPath() {
 		return prop.getProperty("projectPath");
+	}
+
+	public static String getOwner() {
+		return prop.getProperty("owner");
 	}
 
 }

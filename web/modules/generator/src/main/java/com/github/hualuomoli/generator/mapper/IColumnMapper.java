@@ -3,7 +3,6 @@ package com.github.hualuomoli.generator.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import com.github.hualuomoli.generator.entity.Column;
 
@@ -12,15 +11,14 @@ import com.github.hualuomoli.generator.entity.Column;
  * @author hualuomoli
  *
  */
-@Repository
 public interface IColumnMapper {
 
 	/**
 	 * get column Attribute
-	 * @param schema owner of the table
+	 * @param owner owner of the table
 	 * @param tableName table's name
 	 * @return Attributes
 	 */
-	List<Column> findList_mysql(@Param(value = "schema") String schema, @Param(value = "tableName") String tableName);
+	List<Column> findList(@Param(value = "owner") String owner, @Param(value = "tableName") String tableName);
 
 }

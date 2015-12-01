@@ -2,6 +2,8 @@ package com.github.hualuomoli.generator.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.github.hualuomoli.generator.entity.Table;
 
 /**
@@ -11,6 +13,10 @@ import com.github.hualuomoli.generator.entity.Table;
  */
 public interface ITableMapper {
 
-	List<Table> findList(Table table);
+	/** find table list by table owner */
+	List<Table> findList(@Param(value = "owner") String owner);
+
+	/** get table message by table name and table owner */
+	Table get(@Param(value = "tableName") String tableName, @Param(value = "owner") String owner);
 
 }

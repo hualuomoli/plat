@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.hualuomoli.generator.mapper.mysql.IMysqlTableMapper">
+
+	<select id="findList" resultType="com.github.hualuomoli.generator.entity.Table">
+		SELECT 
+			t.TABLE_NAME		as "tableName", 
+			t.TABLE_COMMENT		as "comments"
+		FROM information_schema.TABLES t
+		WHERE t.TABLE_SCHEMA = #{owner}
+	</select>
+	
+	<select id="get" resultType="com.github.hualuomoli.generator.entity.Table">
+		SELECT 
+			t.TABLE_NAME		as "tableName", 
+			t.TABLE_COMMENT		as "comments"
+		FROM information_schema.TABLES t
+		WHERE t.TABLE_SCHEMA = #{owner}
+		AND t.TABLE_NAME = #{tableName}
+	</select>
+		
+</mapper>

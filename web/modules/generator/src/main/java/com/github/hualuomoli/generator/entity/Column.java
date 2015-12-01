@@ -2,6 +2,8 @@ package com.github.hualuomoli.generator.entity;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.github.hualuomoli.generator.db.TrueFalse;
 
 /**
@@ -277,6 +279,11 @@ public class Column implements Serializable {
 
 	public void setQueryLike(String queryLike) {
 		this.queryLike = queryLike;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 
 }

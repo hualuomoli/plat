@@ -16,6 +16,7 @@ import com.github.hualuomoli.commons.json.JsonMapper;
 import com.github.hualuomoli.generator.entity.Column;
 import com.github.hualuomoli.generator.entity.Table;
 import com.github.hualuomoli.generator.service.IGeneratorService;
+import com.google.common.collect.Lists;
 
 @Controller
 @RequestMapping(value = "generator")
@@ -31,7 +32,8 @@ public class GeneratorController {
 		table.setOwner(request.getParameter("owner"));
 		table.setDatabase(request.getParameter("database"));
 		table.setTableName(request.getParameter("tableName"));
-		List<Column> dataList = generatorService.assemble(table);
+		List<Column> dataList = Lists.newArrayList();
+		//generatorService.assemble(table);
 		return JsonMapper.toJsonString(dataList);
 	}
 

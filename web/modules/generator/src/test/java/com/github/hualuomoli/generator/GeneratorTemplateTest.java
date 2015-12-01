@@ -2,14 +2,13 @@ package com.github.hualuomoli.generator;
 
 import java.io.File;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.io.FileUtils;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.hualuomoli.common.util.TemplateUtils;
-import com.github.hualuomoli.generator.db.DataBase;
 import com.github.hualuomoli.generator.db.TrueFalse;
 import com.github.hualuomoli.generator.entity.Column;
 import com.github.hualuomoli.generator.entity.Param;
@@ -21,34 +20,29 @@ public class GeneratorTemplateTest extends SpringTestRunner {
 
 	private static final String tplPath = "E:/github/web/web/modules/generator/src/main/resources/tpls";
 	private static final String destPath = "E:/demo/src/main";
-	@Autowired
+	@Resource(name = "mysqlGeneratorService")
 	private IGeneratorService generatorService;
-	private static Table table;
 
-	@BeforeClass
-	public static void beforeClass() {
-		table = new Table();
-		table.setTableName("gen_demo");
-		table.setComments("代码生成器测试");
-		table.setDatabase(DataBase.DATABASE_MYSQL);
-		table.setOwner("financial");
-		table.setJavaName("GenDemo");
+	private static Table commonTable;
 
-		table.setParams(Param.getParams());
-
-	}
+	private static final String owner = "financial";
+	private static final String tableName = "gen_demo";
+	private static String packageName;
 
 	private void init() {
-		table.setColumnList(generatorService.assemble(table));
+		if (commonTable != null) {
+			return;
+		}
+		Table table = generatorService.assemble(tableName, owner);
 		// 增加查询
 		// string
-		Column name = table.getColumnList().get(2);
+		Column name = table.getColumnList().get(2); // gen_name
 		name.setQueryLike(TrueFalse.TRUE);
 		name.setQueryLikeLeft(TrueFalse.TRUE);
 		name.setQueryLikeRight(TrueFalse.TRUE);
 
 		// double
-		Column salary = table.getColumnList().get(4);
+		Column salary = table.getColumnList().get(4); // salary
 		salary.setQueryStart(TrueFalse.TRUE);
 		salary.setQueryEnd(TrueFalse.TRUE);
 		salary.setQueryStartNoContain(TrueFalse.TRUE);
@@ -58,7 +52,7 @@ public class GeneratorTemplateTest extends SpringTestRunner {
 		salary.setShowStr(TrueFalse.TRUE);
 
 		// date
-		Column date = table.getColumnList().get(6);
+		Column date = table.getColumnList().get(6); // create_date
 		date.setQueryStart(TrueFalse.TRUE);
 		date.setQueryEnd(TrueFalse.TRUE);
 		date.setQueryStartNoContain(TrueFalse.TRUE);
@@ -74,36 +68,44 @@ public class GeneratorTemplateTest extends SpringTestRunner {
 		date.setShowHms(TrueFalse.TRUE);
 		date.setShowColonHms(TrueFalse.TRUE);
 
+		packageName = table.getParams().get(Param.PACKAGE).replaceAll("[.]", "/");
+
+		commonTable = table;
+
+		System.out.println(ToStringBuilder.reflectionToString(table.getColumnList().get(2)));
+
+		System.out.println(ToStringBuilder.reflectionToString(table));
+		System.out.println(ToStringBuilder.reflectionToString(commonTable));
+
 	}
 
 	@Test
-	@Ignore
+	//	@Ignore
 	public void testXml() {
 
 		try {
 			init();
-			String data = TemplateUtils.getTemplateData(tplPath, "xml.ftl", table);
+			String data = TemplateUtils.getTemplateData(tplPath, "xml.ftl", commonTable);
 			logger.debug(data);
-			FileUtils.write(new File(destPath, "resources/mappers/" + table.getJavaName() + "Mapper.xml"), data);
+			FileUtils.write(new File(destPath, "resources/mappers/" + commonTable.getJavaName() + "Mapper.xml"), data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	@Ignore
+	//	@Ignore
 	public void testEntity() {
 
 		try {
-			String packageName = table.getParams().get(Param.PACKAGE).replaceAll("[.]", "/");
 			init();
-			String data = TemplateUtils.getTemplateData(tplPath, "entity-basic.ftl", table);
+			String data = TemplateUtils.getTemplateData(tplPath, "entity-basic.ftl", commonTable);
 			logger.debug(data);
-			FileUtils.write(new File(destPath, "java/" + packageName + "/basic/entity/" + table.getJavaName() + "Basic.java"), data);
+			FileUtils.write(new File(destPath, "java/" + packageName + "/basic/entity/" + commonTable.getJavaName() + "Basic.java"), data);
 
-			data = TemplateUtils.getTemplateData(tplPath, "entity.ftl", table);
+			data = TemplateUtils.getTemplateData(tplPath, "entity.ftl", commonTable);
 			logger.debug(data);
-			FileUtils.write(new File(destPath, "java/" + packageName + "/basic/entity/" + table.getJavaName() + ".java"), data);
+			FileUtils.write(new File(destPath, "java/" + packageName + "/basic/entity/" + commonTable.getJavaName() + ".java"), data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -114,11 +116,10 @@ public class GeneratorTemplateTest extends SpringTestRunner {
 	public void testMapper() {
 
 		try {
-			String packageName = table.getParams().get(Param.PACKAGE).replaceAll("[.]", "/");
 			init();
-			String data = TemplateUtils.getTemplateData(tplPath, "mapper.ftl", table);
+			String data = TemplateUtils.getTemplateData(tplPath, "mapper.ftl", commonTable);
 			logger.debug(data);
-			FileUtils.write(new File(destPath, "java/" + packageName + "/basic/mapper/I" + table.getJavaName() + "Mapper.java"), data);
+			FileUtils.write(new File(destPath, "java/" + packageName + "/basic/mapper/I" + commonTable.getJavaName() + "Mapper.java"), data);
 
 		} catch (Exception e) {
 			e.printStackTrace();

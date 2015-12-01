@@ -3,7 +3,7 @@ package com.github.hualuomoli.generator.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import com.github.hualuomoli.generator.db.TrueFalse;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Table Message entity
@@ -75,19 +75,14 @@ public class Table implements Serializable {
 
 	public void setColumnList(List<Column> columnList) {
 		this.columnList = columnList;
-		if (columnList != null && columnList.size() > 0) {
-			int size = 0;
-			for (Column column : columnList) {
-				if (TrueFalse.TRUE.equals(column.getPk())) {
-					size++;
-				}
-			}
-			pkSize = size;
-		}
 	}
 
 	public Integer getPkSize() {
 		return pkSize;
+	}
+
+	public void setPkSize(Integer pkSize) {
+		this.pkSize = pkSize;
 	}
 
 	public Param getParams() {
@@ -96,6 +91,11 @@ public class Table implements Serializable {
 
 	public void setParams(Param params) {
 		this.params = params;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 
 }

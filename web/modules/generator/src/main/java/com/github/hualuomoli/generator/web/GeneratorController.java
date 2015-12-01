@@ -30,7 +30,7 @@ public class GeneratorController {
 	public String listData(HttpServletRequest request, HttpServletResponse response) {
 		Table table = new Table();
 		table.setOwner(request.getParameter("owner"));
-		table.setDatabase(request.getParameter("database"));
+//		table.setDatabase(request.getParameter("database"));
 		table.setTableName(request.getParameter("tableName"));
 		List<Column> dataList = Lists.newArrayList();
 		//generatorService.assemble(table);

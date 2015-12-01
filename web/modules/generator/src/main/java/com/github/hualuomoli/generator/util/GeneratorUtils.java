@@ -1,6 +1,14 @@
 package com.github.hualuomoli.generator.util;
 
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import com.github.hualuomoli.common.util.TemplateUtils;
+import com.github.hualuomoli.generator.entity.GenConfig;
+import com.github.hualuomoli.generator.entity.Param;
+import com.github.hualuomoli.generator.entity.Table;
 
 /**
  * generator util
@@ -66,6 +74,43 @@ public class GeneratorUtils {
 		// replace Enter to four blank
 		String regex = "\\r";
 		return comments.replaceAll(regex, "    ");
+	}
+
+	// create files
+	public static void createFiles(Table table) throws Exception {
+
+		String packageFolder = table.getParams().get(Param.PACKAGE).replaceAll("[.]", "/");
+		String tplPath = GeneratorUtils.class.getClassLoader().getResource("tpls").getPath();
+		String projectPath = GenConfig.getProjectPath();
+
+		// create xml
+		GeneratorUtils.createXmlFile(table, tplPath, packageFolder, projectPath);
+		// create entity
+		GeneratorUtils.createEntityFile(table, tplPath, packageFolder, projectPath);
+		// create mapper
+		GeneratorUtils.createMapperFile(table, tplPath, packageFolder, projectPath);
+
+	}
+
+	// create xml file
+	public static void createXmlFile(Table table, String tplPath, String packageFolder, String projectPath) throws Exception {
+		String data = TemplateUtils.getTemplateData(tplPath, "xml.ftl", table);
+		FileUtils.write(new File(projectPath, "src/main/resources/mappers/" + table.getJavaName() + "Mapper.xml"), data);
+	}
+
+	// create entity file 
+	public static void createEntityFile(Table table, String tplPath, String packageFolder, String projectPath) throws Exception {
+		String data = TemplateUtils.getTemplateData(tplPath, "entity-basic.ftl", table);
+		FileUtils.write(new File(projectPath, "src/main/java/" + packageFolder + "/basic/entity/" + table.getJavaName() + "Basic.java"), data);
+
+		data = TemplateUtils.getTemplateData(tplPath, "entity.ftl", table);
+		FileUtils.write(new File(projectPath, "src/main/java/" + packageFolder + "/basic/entity/" + table.getJavaName() + ".java"), data);
+	}
+
+	// create mapper
+	public static void createMapperFile(Table table, String tplPath, String packageFolder, String projectPath) throws Exception {
+		String data = TemplateUtils.getTemplateData(tplPath, "mapper.ftl", table);
+		FileUtils.write(new File(projectPath, "src/main/java/" + packageFolder + "/basic/mapper/I" + table.getJavaName() + "Mapper.java"), data);
 	}
 
 }

@@ -18,7 +18,6 @@ public class Table implements Serializable {
 	private String javaName;
 	private String owner;
 	private String comments;
-	private String database; // database name #DataBase
 
 	private List<Column> columnList;
 
@@ -59,14 +58,6 @@ public class Table implements Serializable {
 
 	public void setComments(String comments) {
 		this.comments = comments;
-	}
-
-	public String getDatabase() {
-		return database;
-	}
-
-	public void setDatabase(String database) {
-		this.database = database;
 	}
 
 	public List<Column> getColumnList() {
